@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "sqlalchemy-events"
+version = "0.1.0"
+description = "Helper for SQLAlchemy Events"
+readme = "README.md"
+homepage = "https://github.com/nsiregar/sqlalchemy-events"
+repository = "https://github.com/nsiregar/sqlalchemy-events"
+authors = ["Ngalim Siregar <ngalim.siregar@gmail.com>"]
+license = "MIT"
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Environment :: Web Environment',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3.8',
+    'Topic :: Database',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Utilities',
+]
+include = [
+    "LICENSE"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+SQLAlchemy = "^1.4.22"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+pytest-cov = "^2.12.1"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:.*Binary.*:sqlalchemy.exc.SADeprecationWarning",
+    "ignore:.*Decimal.*:sqlalchemy.exc.SAWarning",
+    "ignore:.*Passing `info=*:DeprecationWarning",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
