@@ -5,6 +5,7 @@
 __pycache__/
 venv/
 *.py[cod]
+dist/
 
 # Distribution
 *.egg-info/
