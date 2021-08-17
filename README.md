@@ -1,4 +1,7 @@
 # sqlalchemy-events
+
+[![CI](https://github.com/nsiregar/sqlalchemy-events/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/nsiregar/sqlalchemy-events/actions/workflows/ci.yml)
+
 Helper for handling sqlalchemy events
 
 ## Installation
