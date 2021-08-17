@@ -44,3 +44,13 @@ def on(*args, **listen_kwargs):
         return fn
 
     return wrapper
+
+
+def before_insert(*args):
+    def wrapper(fn):
+        setattr(fn, _EventObject.ATTR, _EventObject(None, "before_insert"))
+        return fn
+
+    if args and callable(args[0]):
+        return wrapper(args[0])
+    return wrapper

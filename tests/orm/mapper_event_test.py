@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from src.sqlalchemy_events import listen_events, on
+from src.sqlalchemy_events import listen_events, on, before_insert
 
 Base = declarative_base()
 
@@ -28,7 +28,7 @@ def setup_database():
     session.close()
 
 
-def test_before_commit(setup_database):
+def test_before_insert(setup_database):
     @listen_events
     class User(BaseModel):
         @on("before_insert")
@@ -47,3 +47,20 @@ def test_before_commit(setup_database):
     mary = session.query(User).filter(User.username == "mary").first()
     assert john.username == "john"
     assert mary.username == "mary"
+
+
+def test_before_insert_decorator(setup_database):
+    @listen_events
+    class User(BaseModel):
+        @before_insert
+        def lowercase_username(mapper, conn, self):
+            self.username = self.username.lower()
+
+    session = setup_database
+    user_1 = User(username="John")
+
+    session.add(user_1)
+    session.commit()
+
+    john = session.query(User).filter(User.username == "john").first()
+    assert john.username == "john"
