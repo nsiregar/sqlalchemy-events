@@ -1,11 +1,6 @@
 from functools import partial
 from sqlalchemy import event
 
-# EVENTS DOCS
-# http://docs.sqlalchemy.org/en/rel_1_1/core/event.html
-# ORM EVENTS DOCS
-# http://docs.sqlalchemy.org/en/rel_1_1/orm/events.html
-
 
 class _EventObject(object):
     ATTR = "_sqlalchemy_event"
