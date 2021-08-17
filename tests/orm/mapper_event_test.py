@@ -37,16 +37,12 @@ def test_before_insert(setup_database):
 
     session = setup_database
     user_1 = User(username="John")
-    user_2 = User(username="Mary")
 
     session.add(user_1)
-    session.add(user_2)
     session.commit()
 
     john = session.query(User).filter(User.username == "john").first()
-    mary = session.query(User).filter(User.username == "mary").first()
     assert john.username == "john"
-    assert mary.username == "mary"
 
 
 def test_before_insert_decorator(setup_database):
